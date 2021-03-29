@@ -1,4 +1,5 @@
 import './App.css';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Saved from "./pages/Saved"
 import Search from "./pages/Search"
 import NoMatch from "./pages/NoMatch"
@@ -20,7 +21,7 @@ function App() {
       </Route>
 
       <Route path={"/search/:id"}>
-        <Info/>
+        <Saved/>
         </Route>
 
       <Route path={"/saved"}>
