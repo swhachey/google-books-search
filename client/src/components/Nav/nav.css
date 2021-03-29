@@ -1,0 +1,8 @@
+.navbar {
+  filter: drop-shadow(-3px 4px 2px black);
+}
+.navlink {
+  color: cornflowerblue;
+  font-weight: bolder;
+  filter: drop-shadow(-2px 4px 1px black);
+}

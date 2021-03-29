@@ -2,6 +2,8 @@ import './App.css';
 import Saved from "./pages/Saved"
 import Search from "./pages/Search"
 import NoMatch from "./pages/NoMatch"
+import NavBar from "./components/Nav/nav"
+import Jumbotron from "./components/Jumbotron/jumbotron"
 
 function App() {
   return (
