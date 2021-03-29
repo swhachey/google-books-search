@@ -1,24 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import Saved from "./pages/Saved"
+import Search from "./pages/Search"
+import NoMatch from "./pages/NoMatch"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+    <div className="container">
+
+      <NavBar />
+
+         <Jumbotron/>
+
+      <Switch>
+      <Route exact path={["/", "/search"]}>
+      <Search />
+      </Route>
+
+      <Route path={"/search/:id"}>
+        <Info/>
+        </Route>
+
+      <Route path={"/saved"}>
+        <Saved/>
+        </Route>
+        
+      <Route path={"*"}>
+      <NoMatch/>
+      </Route>
+
+    </Switch>
     </div>
+    </BrowserRouter>
   );
 }
 
