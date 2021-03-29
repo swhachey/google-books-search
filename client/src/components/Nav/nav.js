@@ -9,10 +9,10 @@ function NavBar() {
     <Nav.Link href="/" className="navlink">Google Books Search</Nav.Link>
   </Nav.Item>
   <Nav.Item>
-    <Nav.Link href="/traveled" eventKey="link-1" className="navlink">SEARCH</Nav.Link>
+    <Nav.Link href="/search" eventKey="link-1" className="navlink">SEARCH</Nav.Link>
   </Nav.Item>
   <Nav.Item>
-    <Nav.Link href="/chat" eventKey="link-2" className="navlink">SAVED</Nav.Link>
+    <Nav.Link href="/saved" eventKey="link-2" className="navlink">SAVED</Nav.Link>
   </Nav.Item>
 </Nav>
     )
