@@ -18,7 +18,7 @@ export default {
     return axios.post("/api/books", bookData);
   },
 
-  searchBooks: function(title) {
-    return axios.get("https://www.googleapis.com/books/v1/volumes?q=" + title + "&key=AIzaSyAuGTRoA_7KBlup30IG-GKiN8Z3N-2lOZ0");
+  searchGoogle: function(query) {
+    return axios.get("https://www.googleapis.com/books/v1/volumes?q=" + query + "&key=AIzaSyAuGTRoA_7KBlup30IG-GKiN8Z3N-2lOZ0")
   }
 };

@@ -3,7 +3,8 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { List, ListItem } from "../components/List/list";
 import { Input, FormBtn } from "../components/SearchForm/searchform";
-import DeleteBtn from "../components/DeleteBtn/index"
+import ViewBtn from "../components/ViewBtn/viewbtn"
+import SaveBtn from "../components/SaveBtn/savebtn"
 
 class Search extends Component {
   state = {
@@ -13,14 +14,13 @@ class Search extends Component {
 
   // searches the GoogleBooks API storing the data in books array
   searchBooks = query => {
-    API.searchBooks(query)
+    API.searchGoogle(query)
       .then(res =>
         this.setState(
           {
             books: res.data.items,
             search: ""
           },
-          console.log(res.data.items)
         )
       )
       .catch(err => console.log(err));
@@ -37,7 +37,8 @@ class Search extends Component {
   // once the search term is submitted, search the GoogleBooks API for the value of `this.state.search`
   handleFormSubmit = event => {
     event.preventDefault();
-    this.searchBooks(this.state.search);
+    console.log(this.state.title)
+    this.searchBooks(this.state.title);
   };
 
   // deletes book from database
@@ -99,7 +100,16 @@ class Search extends Component {
                       description: book.volumeInfo.description,
                       link: book.volumeInfo.infoLink})}
                   >
-                      {book.volumeInfo.title}
+                      <h3>{book.volumeInfo.title} by {book.volumeInfo.authors}</h3>
+                      <h5>{book.volumeInfo.publishedDate}</h5>
+                      <p>{book.volumeInfo.description}</p>
+                
+                      <ViewBtn link={book.volumeInfo.infoLink}/>
+                 
+                      <br/>
+                      <SaveBtn onClick={
+                         (e)=>this.handleSaveBook(e)
+                      }/>
                   </ListItem>
                 ))}
               </List>
