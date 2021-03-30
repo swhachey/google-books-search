@@ -5,7 +5,7 @@ function ViewBtn(props) {
   return (
        <a rel="noopener noreferrer" href={props.link} target="_blank">
     <button className="btn btn-primary" {...props} type="button" tabIndex="1" >
-       VIEW
+       MORE INFO
     </button>
     </a>
   );

@@ -12,7 +12,6 @@ class Search extends Component {
     search: ""
   };
 
-  // searches the GoogleBooks API storing the data in books array
   searchBooks = query => {
     API.searchGoogle(query)
       .then(res =>
@@ -34,22 +33,20 @@ class Search extends Component {
     });
   };
 
-  // once the search term is submitted, search the GoogleBooks API for the value of `this.state.search`
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.title)
     this.searchBooks(this.state.title);
   };
 
-  // deletes book from database
   deleteBook = id => {
     API.deleteBook(id)
       .then(res => console.log(res.status))
       .catch(err => console.log(err));
   };
 
-  // saves book to database
   handleSaveBook = bookData => {
+    console.log(bookData)
     API.saveBook(bookData)
       .then(res => alert("Book Saved!"))
       .catch(err => console.log(err));
@@ -70,7 +67,7 @@ class Search extends Component {
                 disabled={!(this.state.title)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Search Book
               </FormBtn>
             </form>
            </div>
@@ -78,37 +75,24 @@ class Search extends Component {
            <br/>
               <List>
                   {this.state.books.map(book => (
-                  <ListItem
-                    key={book.id}
-                    src={book.volumeInfo.imageLinks 
-                      ? book.volumeInfo.imageLinks.thumbnail
-                      : "http://icons.iconarchive.com/icons/paomedia/small-n-flat/128/book-icon.png"}
-                    title={book.volumeInfo.title}
-                    authors={book.volumeInfo.authors
-                      ? book.volumeInfo.authors.join(", ")
-                      : "N/A"}
-                    date={book.volumeInfo.publishedDate}
-                    description={book.volumeInfo.description}
-                    link={book.volumeInfo.infoLink}
-                    handleSaveBook={() => this.handleSaveBook({ 
-                      title: book.volumeInfo.title,
-                      src: book.volumeInfo.imageLinks 
-                        ? book.volumeInfo.imageLinks.thumbnail 
-                        : "http://icons.iconarchive.com/icons/paomedia/small-n-flat/128/book-icon.png",
-                      authors: book.volumeInfo.authors,
-                      date: book.volumeInfo.publishedDate,
-                      description: book.volumeInfo.description,
-                      link: book.volumeInfo.infoLink})}
-                  >
+                  <ListItem key={book.id}>
+                     <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title}/>
                       <h3>{book.volumeInfo.title} by {book.volumeInfo.authors}</h3>
                       <h5>{book.volumeInfo.publishedDate}</h5>
                       <p>{book.volumeInfo.description}</p>
+                
                 
                       <ViewBtn link={book.volumeInfo.infoLink}/>
                  
                       <br/>
                       <SaveBtn onClick={
-                         (e)=>this.handleSaveBook(e)
+                         ()=>this.handleSaveBook({
+                           title: book.volumeInfo.title,
+                           author: book.volumeInfo.authors,
+                           description: book.volumeInfo.description,
+                           image: book.volumeInfo.imageLinks.thumbnail,
+                           link: book.volumeInfo.infoLink
+                         })
                       }/>
                   </ListItem>
                 ))}
